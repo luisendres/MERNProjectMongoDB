@@ -6,6 +6,7 @@ import Home from './views/userHome';
 import NewCharacter from './views/newCharacter';
 
 function App() {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
       <Switch>
