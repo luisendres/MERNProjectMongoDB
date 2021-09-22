@@ -13,7 +13,7 @@ const Registration = (props) => {
     const register = (event) => {
         event.preventDefault();
     
-        const newUser = { username, email, password, confirmPassword };
+        const newUser = { firstName, lastName, email, password, confirmPassword };
     
         axios
             .post("http://localhost:8000/api/register", newUser, {
@@ -22,7 +22,8 @@ const Registration = (props) => {
             .then((res) => {
                 console.log(res);
         
-                setUsername("");
+                setFirstName("");
+                setLastName("");
                 setEmail("");
                 setPassword("");
                 setConfirmPassword("");
@@ -33,7 +34,6 @@ const Registration = (props) => {
                 setErrors(err.response.data.errors);
             });
     };
-    
 
     return (
         <div className="">
