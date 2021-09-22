@@ -7,12 +7,9 @@ import axios from "axios";
 import Registration from './views/Registration';
 import Home from './views/userHome';
 import NewCharacter from './views/newCharacter';
-<<<<<<< HEAD
 import TEST from './views/tester';
 import Login from './views/Login';
-=======
 import Navbar from './components/navbar';
->>>>>>> a6189fdc0495ba189b3a7e44ba6acf1bc0170d21
 
 function App() {
 
