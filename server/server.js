@@ -12,8 +12,8 @@ const db_name = "project-tester";
 require("./config/mongoose.config")(db_name);
 
 app.use(cookieParser());
-app.use(cors());
-// app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+// app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 const app = express();
 
 // req.body is undefined without this!
