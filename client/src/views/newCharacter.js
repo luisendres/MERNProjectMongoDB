@@ -5,7 +5,8 @@ import Navbar from "../components/navbar";
 
 const NewCharacter = (props) => {
     const { id } = useParams();
-    const [character, setCharacter] = useState();
+    const [Name, setName] = useState("");
+    const [PlayerName, setPlayerName] = useState
     const [errors, setErrors] = useState(null);
     const history = useHistory();
 
@@ -36,7 +37,7 @@ const NewCharacter = (props) => {
     return (
         <div>
             <Navbar />
-            <form onSubmit={handleOnSubmit}>
+            <form onSubmit={handleOnSubmit} className="border-light border-2">
                 <div className="mb-3">
                     <label className="form-label">Name</label>
                     {errors?.Name && (
@@ -46,7 +47,7 @@ const NewCharacter = (props) => {
                         onChange={(e)=>handleOnChange(e)} 
                         type="text" 
                         className="form-control" 
-                        value={character.Name}
+                        value={Name}
                         name="Name"/>
                 </div>
                 <div className="mb-3">
@@ -58,7 +59,7 @@ const NewCharacter = (props) => {
                         onChange={(e)=>handleOnChange(e)} 
                         type="text" 
                         className="form-control" 
-                        value={character.PlayerName}
+                        value={PlayerName}
                         name="PlayerName"/>
                 </div>
                 <div className="mb-3">
@@ -70,7 +71,7 @@ const NewCharacter = (props) => {
                         onChange={(e)=>handleOnChange(e)} 
                         type="text" 
                         className="form-control" 
-                        value={character.Faction}
+                        value={Faction}
                         name="Faction"/>
                 </div>
                 <input type="submit" className="bg-info border-dark border-2 text-white" />
