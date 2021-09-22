@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import { Switch,  Route } from "react-router-dom";
-import Registration from './views/Reg';
-import Home from './views/userHome';
+import Registration from './views/Registration';
+import Home from './views/home';
 
 function App() {
   return (
