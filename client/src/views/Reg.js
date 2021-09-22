@@ -6,7 +6,12 @@ const Registration = (props) => {
 
 
     return (
-        <Navbar />
+        <div className="">
+            <Navbar />
+            <div className="d-flex flex-column align-items-center">
+                <h1>Register</h1>
+            </div>
+        </div>
     )
 }
 

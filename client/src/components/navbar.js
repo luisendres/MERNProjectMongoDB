@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router-dom";
 
 
 const Navbar = (props) => {
@@ -52,7 +52,9 @@ const Navbar = (props) => {
                                 <div className="collapse navbar-collapse col-auto" id="navbarNavDropdown">
                                     <ul className="navbar-nav">
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#">Register</a>
+                                            <Link to={"/register"}>
+                                                <a className="nav-link">Register</a>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
                                             <a className="nav-link" onClick={handleLogin}>Login</a>
