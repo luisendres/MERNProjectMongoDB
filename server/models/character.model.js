@@ -9,6 +9,12 @@ const CharacterSchema = new mongoose.Schema({
         type: String,
         required: [true, "Name is required"]
     },
+
+    PlayerName: {
+        type: String,
+        required: [true, "Player name required"]
+    },
+
     Faction: {
         type: String,
         required: [true, "Faction is required"]
@@ -40,36 +46,43 @@ const CharacterSchema = new mongoose.Schema({
 
     Health: {
         type: Number,
+        default: 10,
         required: [true, "Health is required"]
     },
 
     Willpower: {
         type: Number,
+        default: 1,
         required: [true, "Willpower is required"]
     },
 
     EnergyType: {
         type: String,
+        default: "Vitality",
         required: [true, "Energy type is required"]
     },
 
     EnergyInt: {
         type: Number,
+        default: 10,
         required: [true, "Energy number is required"]
     },
 
     VirtueType: {
         type: String,
+        default: "Humanity",
         required: [true, "Virtue type is required"]
     },
 
     VirtueInt: {
         type: Number,
+        default: 7,
         required: [true, "Virtue number is required"]
     },
 
     Devoured: {
-        type: Number
+        type: Number,
+        default: 0
     },
 
     ShadowDeedNameSire: {
@@ -82,6 +95,11 @@ const CharacterSchema = new mongoose.Schema({
 
     Bank: {
         type: Number,
+        default: 0
+    },
+
+    Updated: {
+        type: Array
     }
 
     }, {timestamps: true}
