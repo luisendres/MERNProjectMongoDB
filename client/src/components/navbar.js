@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 
 
 const Navbar = (props) => {
+    const { id } = useParams();
     const [user, setUser] = useState("");
 
 
@@ -18,9 +19,8 @@ const Navbar = (props) => {
     }
 
     return (
-        <div className="container">
-            <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark w-100">
-                <div class="container-fluid d-flex flex-row justify-content-between">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 mb-4">
+                <div className="container-fluid d-flex flex-row justify-content-between">
                     <div className="row">
                         <a className="navbar-brand col-auto" href="/">
                         <img src="https://northwest-larpers.square.site/uploads/b/8e421cc0-5bf0-11ea-94a7-370806a9cf44/a1005f9bda8c16c56a5d00375baf7000.png?width=400" alt="" width="30" height="30" className="d-inline-block align-text-top mx-4"></img>
@@ -33,7 +33,9 @@ const Navbar = (props) => {
                                         <a className="nav-link" href="#">Home</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">My Characters</a>
+                                        <Link to={"/player/character/new/:id"}>
+                                            <a className="nav-link">My Characters</a>
+                                        </Link>
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link" href="#">Events</a>
@@ -65,7 +67,6 @@ const Navbar = (props) => {
                     </div>
                 </div>
             </nav>
-        </div>
     )
 }
 

@@ -4,6 +4,7 @@ import { Switch,  Route } from "react-router-dom";
 import Registration from './views/Registration';
 import Home from './views/userHome';
 import NewCharacter from './views/newCharacter';
+import Navbar from './components/navbar';
 
 function App() {
   return (
