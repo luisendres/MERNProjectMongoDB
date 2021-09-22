@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 
 const Registration = (props) => {
@@ -9,11 +10,14 @@ const Registration = (props) => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState(null);
+    
+    const history = useHistory();
 
     const register = (event) => {
         event.preventDefault();
     
         const newUser = { firstName, lastName, email, password, confirmPassword };
+
     
         axios
             .post("http://localhost:8000/api/register", newUser, {
@@ -21,12 +25,7 @@ const Registration = (props) => {
             })
             .then((res) => {
                 console.log(res);
-        
-                setFirstName("");
-                setLastName("");
-                setEmail("");
-                setPassword("");
-                setConfirmPassword("");
+                history.push(`/`);
             })
             .catch((err) => {
                 console.log(err);
@@ -50,7 +49,6 @@ const Registration = (props) => {
                             type="text"
                             name="firstName"
                             onChange={(e) => setFirstName(e.target.value)}
-                            value={firstName}
                         />
                         {/* ?. is called optional chaining, lets you safely try to access keys that might not exist and avoid errors */}
                         {errors?.firstName && (
@@ -66,7 +64,6 @@ const Registration = (props) => {
                             type="text"
                             name="lastName"
                             onChange={(e) => setLastName(e.target.value)}
-                            value={lastName}
                         />
                         {/* ?. is called optional chaining, lets you safely try to access keys that might not exist and avoid errors */}
                         {errors?.lastName && (
@@ -82,7 +79,6 @@ const Registration = (props) => {
                             type="email"
                             name="email"
                             onChange={(e) => setEmail(e.target.value)}
-                            value={email}
                         />
                         {errors?.email && (
                             <span className="error-message">
@@ -97,7 +93,6 @@ const Registration = (props) => {
                             type="password"
                             name="email"
                             onChange={(e) => setPassword(e.target.value)}
-                            value={password}
                         />
                         {errors?.password && (
                             <span className="error-message">
@@ -112,7 +107,6 @@ const Registration = (props) => {
                             type="password"
                             name="confirmPassword"
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            value={confirmPassword}
                         />
                         {errors?.confirmPassword ? (
                             <span className="error-message">
