@@ -7,6 +7,7 @@ import NewCharacter from './views/newCharacter';
 import Navbar from './components/navbar';
 
 function App() {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
       <Switch>
