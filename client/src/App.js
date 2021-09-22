@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import { Switch,  Route } from "react-router-dom";
-import Registration from './views/Reg';
+import Registration from './views/Registration';
 import Home from './views/userHome';
+import NewCharacter from './views/newCharacter';
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
         <Route exact path="/register">
           <Registration />
         </Route>
+
+        <Route exact path="/player/character/new/:id">
+          <NewCharacter />
+        </Route>
+
       </Switch>
     </div>
   );
