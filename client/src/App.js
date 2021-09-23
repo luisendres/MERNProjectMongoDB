@@ -51,8 +51,8 @@ function App() {
 
   return (
     <div className="App">
-      {isLoggedIn ? <NavLog /> : <NavOut />}
-      {isLoggedIn && <button onClick={logout}>Logout</button>}
+      {/* {isLoggedIn ? <NavLog /> : <NavOut />}
+      {isLoggedIn && <button onClick={logout}>Logout</button>} */}
       <Switch >
         {/* <Route exact path="/">
           

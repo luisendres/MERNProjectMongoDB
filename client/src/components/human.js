@@ -16,17 +16,24 @@ const Human = (props) => {
                     onChange={(e)=> {
                         props.setSubfaction1(e.target.value);
                         setComSubfaction1(e.target.value);
+                        if(e.target.value==="Gifted Kinfolk") {
+                            props.setEnergyType("Gnosis"); 
+                        } else if (e.target.value==="Sorcerer" || e.target.value === "Fomori") {
+                            props.setEnergyType("Essence");
+                        } else if (e.target.value==="Ghoul") {
+                            props.setEnergyType("Vitae");
+                        }
                     }}
                     className="form-select text-dark fw-bold"
                     value={comSubfaction1}
                     name="Subfaction1">
-                        <option>Type</option>
+                        <option value="">Type</option>
                         <option value="Commoner">Commoner</option>
-                        <option value="Ghoul">Ghoul</option>
+                        <option value="Ghoul" id="Vitae">Ghoul</option>
                         <option value="Kinfolk">Kinfolk</option>
-                        <option value="Gifted Kinfolk">Gifted Kinfolk</option>
-                        <option value="Sorcerer">Sorcerer</option>
-                        <option value="Fomori">Fomori</option>
+                        <option value="Gifted Kinfolk" id="Gnosis">Gifted Kinfolk</option>
+                        <option value="Sorcerer" id="Essence">Sorcerer</option>
+                        <option value="Fomori" id="Essence">Fomori</option>
                 </select>
             </div>
             { comSubfaction1 === "Ghoul" ?

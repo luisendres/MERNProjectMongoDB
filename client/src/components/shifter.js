@@ -7,7 +7,7 @@ const Shifter = (props) => {
     return (
         <div>
             <div className="row">
-                <label className="form-label">Shifter Subfactions (Tribe, Breed, Auspice)</label>
+                <label className="form-label">Shifter Subfactions</label>
                 <div className="mb-3 col-4">
                     {errors?.Subfaction1 && (
                         <span className="text-danger"> {errors?.Subfaction1?.message}</span>
