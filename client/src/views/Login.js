@@ -3,10 +3,12 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 // import { navigate } from "@reach/router";
 
-const SignIn = ({ setLoggedIn }) => {
+const Login = ({ setLoggedIn }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    const history = useHistory();
 
     const login = (event) => {
         event.preventDefault();
@@ -21,7 +23,7 @@ const SignIn = ({ setLoggedIn }) => {
         .then((res) => {
             console.log(res);
             setLoggedIn();
-            navigate("/users");
+            history.push(`/`);
         })
         .catch((err) => {
             console.log(err);
@@ -59,4 +61,4 @@ const SignIn = ({ setLoggedIn }) => {
     );
 };
 
-export default SignIn;
+export default Login;
