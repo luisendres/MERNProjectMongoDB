@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useState } from "react";
-import { Switch,  Route, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Switch, Route, useHistory } from "react-router-dom";
 import axios from "axios";
 
 
@@ -10,11 +10,25 @@ import NewCharacter from './views/newCharacter';
 import TEST from './views/tester';
 import Login from './views/Login';
 import Navbar from './components/navbar';
+import NavOut from './components/navOut';
+import NavLog from './components/navLog';
+import NotFound from "./views/NotFound";
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
   const history = useHistory();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/users/loggedin", {
+        withCredentials: true,
+      })
+      .then((res) => setIsLoggedIn(res.data))
+      .catch(() => {
+        setIsLoggedIn(null);
+      });
+  }, []);
 
   const logout = () => {
     axios
@@ -28,7 +42,7 @@ function App() {
       )
       .then((res) => {
         console.log(res);
-        setIsLoggedIn(false);
+        setIsLoggedIn(null);
         history.push(`/`);
       })
       .catch(console.log);
@@ -36,28 +50,25 @@ function App() {
 
   return (
     <div className="App">
+      {isLoggedIn ? <NavLog /> : <NavOut />}
       {isLoggedIn && <button onClick={logout}>Logout</button>}
-      <Switch>
+      <Switch >
         <Route exact path="/">
-          {isLoggedIn ? <TEST/>:<Registration/>}
-          {/* <Home /> */}
+          
+        </Route>
+
+        <Route exact path="/test">
+          <TEST isLoggedIn = {isLoggedIn}/>
         </Route>
 
         <Route exact path="/register">
           <Registration />
         </Route>
-
         <Route exact path="/login">
-          <Login setLoggedIn={() => setIsLoggedIn(true)} />
+          <Login setLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
         </Route>
 
-        <Route exact path="/test">
-          <TEST exact path="/test"/>
-        </Route>
-
-        <Route exact path="/player/character/new/:id">
-          <NewCharacter />
-        </Route>
+        <Route component={NotFound} />
 
       </Switch>
     </div>

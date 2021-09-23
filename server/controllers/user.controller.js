@@ -34,7 +34,7 @@ module.exports = {
                             httpOnly: true,
                             }
                         )
-                        .json({ msg: "success!" });
+                        .json(user);
                     } else {
                         res.status(400).json({ msg: "invalid login attempt" });
                     }
@@ -63,7 +63,9 @@ module.exports = {
 
     getLoggedInUser(req, res) {
         const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
-
+        if(!decodedJWT){
+            return res.json(null);
+        }
         User.findById(decodedJWT.payload._id)
             .then((user) => res.json(user))
             .catch((err) => res.json(err));

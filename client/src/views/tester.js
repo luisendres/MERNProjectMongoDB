@@ -3,8 +3,13 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const TEST = (props) => {
-    const [users, setUsers] = useState([]);
+    console.log("test props", props);
     const history = useHistory();
+    if(!props.isLoggedIn) {
+        history.push("/login")
+    }
+
+    const [users, setUsers] = useState([]);
 
     const getLoggedInUser = () => {
         axios
@@ -23,7 +28,7 @@ const TEST = (props) => {
             .then((res) => {
                 setUsers(res.data);
                 console.log(res);
-                history.push(`/`);
+                // history.push(`/`);
             })
             .catch((err) => {
                 console.log("not authorized");
