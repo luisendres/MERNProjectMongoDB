@@ -64,6 +64,7 @@ function App() {
         <Route exact path="/register">
           <Registration />
         </Route>
+        
         <Route exact path="/login">
           <Login setLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
         </Route>
