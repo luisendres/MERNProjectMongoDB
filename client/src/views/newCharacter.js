@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
+import Shifter from "../components/shifter";
+import Human from "../components/human";
+import Vampire from "../components/vampire";
 
 const NewCharacter = (props) => {
     const { id } = useParams();
@@ -97,33 +100,37 @@ const NewCharacter = (props) => {
                                 name="PlayerName"/>
                         </div>
                         <div className="mb-3 col-4">
-                            <label className="form-label">Faction</label>
-                            {errors?.Faction && (
-                                <span className="text-danger"> {errors?.descripFaction?.message}</span>
-                            )}
-                            <input 
-                                onChange={(e)=>setFaction(e.target.value)} 
-                                type="text" 
-                                className="form-control text-dark fw-bold" 
-                                value={Faction}
-                                name="Faction"/>
+                            <div className="d-flex flex-column">
+                                <label className="form-label">Faction</label>
+                                {errors?.Faction && (
+                                    <span className="text-danger"> {errors?.descripFaction?.message}</span>
+                                )}
+                                <select 
+                                    onChange={(e)=>setFaction(e.target.value)}
+                                    value={Faction} 
+                                    name="Faction">
+                                    <option></option>
+                                    <option value="Human">Human</option>
+                                    <option value="Vampire">Vampire</option>
+                                    <option value="Shifter">Shifter</option>
+                                    <option value="Wraith">Wraith</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div className="mb-3 col-auto">
-                        <label className="form-label">Subfactions</label>
-                        {errors?.Faction && (
-                            <span className="text-danger"> {errors?.descripFaction?.message}</span>
-                        )}
-                        <input 
-                            onChange={(e)=>setSubfaction1(e.target.value)} 
-                            type="text" 
-                            className="form-control text-dark fw-bold" 
-                            value={Subfaction1}
-                            name="Faction"/>
-                    </div>
-                    <input type="submit" className="bg-info border-dark border-2 text-white" />
+                    {Faction === "Human" ?
+                        <Human Subfaction1={Subfaction1} Subfaction2={Subfaction2} Subfaction3={Subfaction3} errors={errors} /> : ""
+                    }
+                    {Faction === "Shifter" ?
+                        <Shifter Subfaction1={Subfaction1} Subfaction2={Subfaction2} Subfaction3={Subfaction3} errors={errors} /> : ""
+                    }
+                    {Faction === "Vampire" ?
+                        <Vampire Subfaction1={Subfaction1} Subfaction2={Subfaction2} Subfaction3={Subfaction3} errors={errors} /> : ""
+                    }
+                    <input type="submit" className="bg-dark border-light border-2 text-light" />
                 </form>
             </div>
+            <h3 className="text-light">{Subfaction1}</h3>
         </div>
     )
 
