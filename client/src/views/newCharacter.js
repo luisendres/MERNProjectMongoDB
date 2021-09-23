@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Shifter from "../components/shifter";
@@ -7,7 +7,31 @@ import Human from "../components/human";
 import Vampire from "../components/vampire";
 
 const NewCharacter = (props) => {
+    // console.log("test props", props);
+    const history = useHistory();
+    if(!props.isLoggedIn) {
+        history.push("/")
+    }
+
+    const [users, setUsers] = useState([]);
     const { id } = useParams();
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/api/users/loggedin", {
+                withCredentials: true,
+            })
+            .then((res) => {
+                setUsers(res.data);
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log("not authorized");
+                console.log(err.response);
+                history.push(`/`);
+            });
+    }, []);
+
+    // const { id } = useParams();
     const [Name, setName] = useState("");
     const [PlayerName, setPlayerName] = useState("");
     const [Faction, setFaction] = useState("");
@@ -40,7 +64,7 @@ const NewCharacter = (props) => {
     const [Sigil, setSigil] = useState("");
     const [Bank, setBank] = useState();
     const [errors, setErrors] = useState(null);
-    const history = useHistory();
+    // const history = useHistory();
 
     // const handleChanges = (fragmentKey, fragmentValue) => {
     //     const fragmentKey = fragment[1];
@@ -90,7 +114,6 @@ const NewCharacter = (props) => {
 
     return (
         <div>
-            <Navbar />
             <div className="mt-5 d-flex justify-content-center row">
                 <form onSubmit={handleOnSubmit} className="w-75 border border-light border-2 p-3">
                     <div className="row">

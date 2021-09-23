@@ -35,7 +35,6 @@ const UpdateCharacter = (props) => {
 
     return (
         <div>
-            <Navbar />
             <form onSubmit={handleOnSubmit} className="border-light border-2">
                 <div className="mb-3">
                     <label className="form-label">Name</label>

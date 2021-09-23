@@ -4,6 +4,25 @@ import { useParams, Link } from "react-router-dom";
 
 
 const NavLog = (props) => {
+    console.log("test props", props);
+
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/api/users/loggedin", {
+                withCredentials: true,
+            })
+            .then((res) => {
+                setUsers(res.data);
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log("not authorized");
+                console.log(err.response);
+                // history.push(`/`);
+            });
+    }, []);
+
     return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 mb-4">
                 <div className="container-fluid d-flex flex-row justify-content-between">
@@ -18,7 +37,7 @@ const NavLog = (props) => {
                                     <a className="nav-link" href="/">Home</a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={"/player/character/new/:id"}>
+                                    <Link to={`/player/character/new/${users._id}`}>
                                         <a className="nav-link">My Characters</a>
                                     </Link>
                                     <Link to={"/test"}>
