@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 const Human = (props) => {
-    const [Subfaction1, setSubfaction1] = useState(props.Subfaction1);
-    const [Subfaction2, setSubfaction2] = useState(props.Subfaction2);
-    const [Subfaction3, setSubfaction3] = useState(props.Subfaction3);
+    const [comSubfaction1, setComSubfaction1] = useState("");
+    const [comSubfaction2, setComSubfaction2] = useState("");
     const [errors, setErrors] = useState(props.errors);
 
     return (
@@ -14,9 +13,12 @@ const Human = (props) => {
                     <span className="text-danger"> {errors?.Subfaction1?.message}</span>
                 )}
                 <select 
-                    onChange={(e)=>setSubfaction1(e.target.value)}
+                    onChange={(e)=> {
+                        props.setSubfaction1(e.target.value);
+                        setComSubfaction1(e.target.value);
+                    }}
                     className="form-select text-dark fw-bold"
-                    value={Subfaction1} 
+                    value={comSubfaction1}
                     name="Subfaction1">
                         <option>Type</option>
                         <option value="Commoner">Commoner</option>
@@ -27,14 +29,17 @@ const Human = (props) => {
                         <option value="Fomori">Fomori</option>
                 </select>
             </div>
-            { Subfaction1 === "Ghoul" ?
+            { comSubfaction1 === "Ghoul" ?
                 <div className="col-4">
                     <select 
-                    onChange={(e)=>setSubfaction2(e.target.value)}
+                    onChange={(e)=> {
+                        props.setSubfaction2(e.target.value);
+                        setComSubfaction2(e.target.value);
+                    }}
                     className="form-select text-dark fw-bold"
-                    value={Subfaction2} 
+                    value={comSubfaction2}
                     name="Subfaction2">
-                        <option>Clan</option>
+                        <option value ="">Clan</option>
                         <option value="Assamite">Assamite</option>
                         <option value="Baali">Baali</option>
                         <option value="Brujah">Brujah</option>
@@ -57,26 +62,29 @@ const Human = (props) => {
                     </select>
                 </div> : ""
             }
-            {Subfaction1 === "Sorcerer" ?
+            {comSubfaction1 === "Sorcerer" ?
                 <div className="col-4">
                     <select 
-                    onChange={(e)=>setSubfaction2(e.target.value)}
+                    onChange={(e)=> {
+                        props.setSubfaction2(e.target.value);
+                        setComSubfaction2(e.target.value);
+                    }}
                     className="form-select text-dark fw-bold"
-                    value={Subfaction2} 
+                    value={comSubfaction2}
                     name="Subfaction2">
-                        <option></option>
+                        <option value="">Not Kinfolk</option>
                         <option value="Kinfolk">Kinfolk</option>
                     </select>
                 </div> : ""
             }
-            {Subfaction1 === "Kinfolk" || Subfaction1 === "Gifted Kinfolk" || Subfaction2 === "Kinfolk" ?
+            {comSubfaction1 === "Kinfolk" || comSubfaction1 === "Gifted Kinfolk" || comSubfaction2 === "Kinfolk" ?
                 <div className="col-4">
                     <select 
-                    onChange={(e)=>setSubfaction3(e.target.value)}
+                    onChange={(e)=>props.setSubfaction3(e.target.value)}
                     className="form-select text-dark fw-bold"
-                    value={Subfaction3} 
+                    value=""
                     name="Subfaction3">
-                        <option>Tribe</option>
+                        <option value="">Tribe</option>
                         <option value="Black Fury">Black Fury</option>
                         <option value="Black Spiral Dancer">Black Spiral Dancer</option>
                         <option value="Bone Gnawer">Bone Gnawer</option>

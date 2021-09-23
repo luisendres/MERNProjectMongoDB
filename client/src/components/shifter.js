@@ -2,10 +2,7 @@ import React, { useState } from "react";
 
 
 const Shifter = (props) => {
-    const [Subfaction1, setSubfaction1] = useState(props.Subfaction1);
-    const [Subfaction2, setSubfaction2] = useState(props.Subfaction2);
-    const [Subfaction3, setSubfaction3] = useState(props.Subfaction3);
-    const [errors, setErrors] = useState(props);
+    const [errors, setErrors] = useState(props.errors);
 
     return (
         <div>
@@ -16,11 +13,10 @@ const Shifter = (props) => {
                         <span className="text-danger"> {errors?.Subfaction1?.message}</span>
                     )}
                     <select 
-                        onChange={(e)=>setSubfaction1(e.target.value)}
+                        onChange={(e)=>props.setSubfaction1(e.target.value)}
                         className="form-select text-dark fw-bold"
-                        value={Subfaction1} 
                         name="Subfaction1">
-                            <option>Tribe</option>
+                            <option value="">Tribe</option>
                             <option value="Black Fury">Black Fury</option>
                             <option value="Black Spiral Dancer">Black Spiral Dancer</option>
                             <option value="Bone Gnawer">Bone Gnawer</option>
@@ -36,11 +32,10 @@ const Shifter = (props) => {
                 </div>
                 <div className="col-4">
                     <select 
-                    onChange={(e)=>setSubfaction2(e.target.value)}
-                    className="form-select text-dark fw-bold"
-                    value={Subfaction2} 
+                    onChange={(e)=>props.setSubfaction2(e.target.value)}
+                    className="form-select text-dark fw-bold" 
                     name="Subfaction2">
-                        <option>Breed</option>
+                        <option value="">Breed</option>
                         <option value="Homid">Homid</option>
                         <option value="Lupus">Lupus</option>
                         <option value="Metis">Metis</option>
@@ -48,11 +43,10 @@ const Shifter = (props) => {
                 </div>
                 <div className="col-4">
                     <select 
-                    onChange={(e)=>setSubfaction3(e.target.value)}
-                    className="form-select text-dark fw-bold"
-                    value={Subfaction3} 
+                    onChange={(e)=>props.setSubfaction3(e.target.value)}
+                    className="form-select text-dark fw-bold" 
                     name="Subfaction3">
-                        <option>Auspice</option>
+                        <option value="">Auspice</option>
                         <option value="Ragabash">Ragabash</option>
                         <option value="Theurge">Theurge</option>
                         <option value="Philodox">Philodox</option>

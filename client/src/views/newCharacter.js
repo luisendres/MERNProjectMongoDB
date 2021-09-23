@@ -12,8 +12,17 @@ const NewCharacter = (props) => {
     const [PlayerName, setPlayerName] = useState("");
     const [Faction, setFaction] = useState("");
     const [Subfaction1, setSubfaction1] = useState("");
+    const changeSubfaction1 = (value) => {
+        setSubfaction1(value);
+    }
     const [Subfaction2, setSubfaction2] = useState("");
+    const changeSubfaction2 = (value) => {
+        setSubfaction2(value);
+    }
     const [Subfaction3, setSubfaction3] = useState("");
+    const changeSubfaction3 = (value) => {
+        setSubfaction3(value);
+    }
     const [Patron, setPatron] = useState("");
     const [GenRank, setGenRank] = useState("");
     const [Passion, setPassion] = useState("");
@@ -30,6 +39,13 @@ const NewCharacter = (props) => {
     const [errors, setErrors] = useState(null);
     const history = useHistory();
 
+    // const handleChanges = (fragmentKey, fragmentValue) => {
+    //     const fragmentKey = fragment[1];
+    //     const fragmentValue = fragment[2];
+
+
+    // }
+    
     const handleOnSubmit = (e) => {
         e.preventDefault();
 
@@ -72,7 +88,7 @@ const NewCharacter = (props) => {
     return (
         <div>
             <Navbar />
-            <div className="mt-5 d-flex justify-content-center">
+            <div className="mt-5 d-flex justify-content-center row">
                 <form onSubmit={handleOnSubmit} className="w-75 border border-light border-2 p-3">
                     <div className="row">
                         <div className="mb-3 col-4">
@@ -119,18 +135,41 @@ const NewCharacter = (props) => {
                         </div>
                     </div>
                     {Faction === "Human" ?
-                        <Human Subfaction1={Subfaction1} Subfaction2={Subfaction2} Subfaction3={Subfaction3} errors={errors} /> : ""
+                        <Human setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setSubfaction3={changeSubfaction3} errors={errors} /> : ""
                     }
                     {Faction === "Shifter" ?
-                        <Shifter Subfaction1={Subfaction1} Subfaction2={Subfaction2} Subfaction3={Subfaction3} errors={errors} /> : ""
+                        <Shifter Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} Subfaction2={Subfaction2} setSubfaction2={changeSubfaction2} 
+                        setSubfaction3={changeSubfaction3} errors={errors} /> : ""
                     }
                     {Faction === "Vampire" ?
-                        <Vampire Subfaction1={Subfaction1} Subfaction2={Subfaction2} Subfaction3={Subfaction3} errors={errors} /> : ""
+                        <Vampire setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setSubfaction3={changeSubfaction3} errors={errors} /> : ""
                     }
+                    <div className="row">
+                        {(Faction === "Shifter" || Subfaction1 === "Kinfolk" || Subfaction1 === "Gifted Kinfolk" || Subfaction2 === "Kinfolk") ?
+                            <div className="mb-3 col-4">
+                                <div className="d-flex flex-column">
+                                    <label className="form-label">Patron</label>
+                                        {errors?.Faction && (
+                                            <span className="text-danger"> {errors?.descripFaction?.message}</span>
+                                        )}
+                                    <input 
+                                        onChange={(e)=>setPatron(e.target.value)}
+                                        type="text" 
+                                        value={Patron}
+                                        name="Patron" />
+                                </div>
+                            </div> : ""
+                        }
+                    </div>
                     <input type="submit" className="bg-dark border-light border-2 text-light" />
+                    <h3 className="text-light">Subfaction1: {Subfaction1}</h3>
+                    <h3 className="text-light">Subfaction2: {Subfaction2}</h3>
+                    <h3 className="text-light">Subfaction3: {Subfaction3}</h3>
+                    <h3 className="tex-light">Patron: {Patron}</h3>
                 </form>
             </div>
-            <h3 className="text-light">{Subfaction1}</h3>
+            <div className="row">
+            </div>
         </div>
     )
 
