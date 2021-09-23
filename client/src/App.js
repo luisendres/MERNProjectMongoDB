@@ -13,6 +13,7 @@ import Navbar from './components/navbar';
 import NavOut from './components/navOut';
 import NavLog from './components/navLog';
 import NotFound from "./views/NotFound";
+import UpdateCharacter from './views/updateCharacter';
 
 function App() {
 
@@ -53,8 +54,11 @@ function App() {
       {isLoggedIn ? <NavLog /> : <NavOut />}
       {isLoggedIn && <button onClick={logout}>Logout</button>}
       <Switch >
-        <Route exact path="/">
+        {/* <Route exact path="/">
           
+        </Route> */}
+        <Route exact path="/">
+          <Login setLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
         </Route>
 
         <Route exact path="/test">
@@ -64,10 +68,15 @@ function App() {
         <Route exact path="/register">
           <Registration />
         </Route>
-        
-        <Route exact path="/login">
-          <Login setLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+        <Route exact path="/player/character/new/:id">
+          <NewCharacter />
         </Route>
+        <Route exact path="/update">
+          <UpdateCharacter />
+        </Route>
+        {/* <Route exact path="/login">
+          <Login setLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+        </Route> */}
 
         <Route component={NotFound} />
 

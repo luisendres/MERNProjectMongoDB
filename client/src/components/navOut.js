@@ -11,22 +11,7 @@ const NavOut = (props) => {
                         <a className="navbar-brand col-auto" href="/">
                         <img src="https://northwest-larpers.square.site/uploads/b/8e421cc0-5bf0-11ea-94a7-370806a9cf44/a1005f9bda8c16c56a5d00375baf7000.png?width=400" alt="" width="30" height="30" className="d-inline-block align-text-top mx-4"></img>
                             Shadow Accord
-                        </a>
-                        <div className="collapse navbar-collapse col-auto" id="navbarNavDropdown">
-                            <ul className="navbar-nav">
-                                <li className="nav-item">
-                                    <Link to={"/register"}>
-                                        <a className="nav-link">Register</a>
-                                    </Link>
-                                    <Link to={"/test"}>
-                                        <a className="nav-link">test</a>
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    {/* <a className="nav-link" onClick={handleLogin}>Login</a> */}
-                                </li>
-                            </ul>
-                        </div>                        
+                        </a>              
                     </div>
                 </div>
             </nav>
