@@ -98,10 +98,10 @@ const NewCharacter = (props) => {
 
 
         axios
-            .put("http://localhost:8000/api/characters/", character)
+            .post("http://localhost:8000/api/characters/new", character)
             .then((res) => {
                 console.log(res.data);
-                history.pushState(`/player/${id}`);
+                history.push(`/`);
             })
             .catch((err) => {
                 setErrors(err.response.data.errors);
@@ -112,7 +112,9 @@ const NewCharacter = (props) => {
     return (
         <div>
             <div className="mt-5 d-flex justify-content-center row">
-                <form onSubmit={handleOnSubmit} className="w-75 border border-light border-2 p-3">
+                <form onSubmit={(e) => {
+                    handleOnSubmit(e);
+                }} className="w-75 border border-light border-2 p-3">
                     <div className="row">
                         <div className="mb-3 col-4">
                             <label className="form-label">Name</label>
