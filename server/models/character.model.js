@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const CharacterSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     User_Id: {
         type: Number
     },

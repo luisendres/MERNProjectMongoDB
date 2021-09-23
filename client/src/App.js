@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      {isLoggedIn ? <NavLog /> : <NavOut />}
+      {isLoggedIn ? <NavLog/> : <NavOut />}
       {isLoggedIn && <button onClick={logout}>Logout</button>}
       <Switch >
         {/* <Route exact path="/">
@@ -69,7 +69,7 @@ function App() {
           <Registration />
         </Route>
         <Route exact path="/player/character/new/:id">
-          <NewCharacter />
+          <NewCharacter isLoggedIn={isLoggedIn}/>
         </Route>
         <Route exact path="/update">
           <UpdateCharacter />
