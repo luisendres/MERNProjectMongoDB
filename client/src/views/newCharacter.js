@@ -183,6 +183,21 @@ const NewCharacter = (props) => {
                                 </div>
                             </div> : ""
                         }
+                        {(Faction === "Vampire" || Faction === "Shifter") ? 
+                            <div className="mb-3 col-4">
+                                <div className="d-flex flex-column">
+                                    {Faction === "Vampire" ?
+                                        <label className="form-label">Generation</label> :
+                                        <label className="form-label">Rank</label>
+                                    }
+                                    <input
+                                        onChange={(e)=>setGenRank(e.target.value)}
+                                        type="text"
+                                        value={GenRank}
+                                        name="GenRank" />
+                                </div>
+                            </div> : ""
+                        }
                     </div>
                     <input type="submit" className="bg-dark border-light border-2 text-light" />
                     <h3 className="text-light">Subfaction1: {Subfaction1}</h3>
