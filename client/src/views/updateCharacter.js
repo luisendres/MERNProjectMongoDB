@@ -78,3 +78,5 @@ const UpdateCharacter = (props) => {
         </div>
     )
 }
+
+export default UpdateCharacter;

@@ -6,7 +6,7 @@ const TEST = (props) => {
     console.log("test props", props);
     const history = useHistory();
     if(!props.isLoggedIn) {
-        history.push("/login")
+        history.push("/")
     }
 
     const [users, setUsers] = useState([]);
