@@ -36,7 +36,7 @@ const Registration = (props) => {
 
     return (
         <div className="">
-            <div className="mt-5 d-flex flex-column align-items-center bg-dark">
+            <div className="mt-5 d-flex flex-column align-items-center">
                 <h1 className="text-white">Register</h1>
                 <fieldset>
                     <legend>Sign Up</legend>
