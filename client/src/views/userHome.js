@@ -66,7 +66,7 @@ const Home = (props) => {
                                     <td>{ch.PlayerName}</td>
                                     <td>{ch.Name}</td>
                                     <td className="d-flex justify-content-around">
-                                        <Link to={`/${ch._id}`}>
+                                        <Link to={`/player/character/details/${ch._id}`}>
                                             View 
                                         </Link>
                                         <span> | </span>

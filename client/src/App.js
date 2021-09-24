@@ -14,6 +14,7 @@ import NavOut from './components/navOut';
 import NavLog from './components/navLog';
 import NotFound from "./views/NotFound";
 import UpdateCharacter from './views/updateCharacter';
+import CharacterDetails from './views/characterDetail';
 
 function App() {
 
@@ -74,10 +75,9 @@ function App() {
         <Route exact path="/player/character/update/:id">
           <UpdateCharacter />
         </Route>
-
-        {/* <Route exact path="/player/character/view/:id">
-          <UpdateCharacter />
-        </Route> */}
+        <Route exact path="/player/character/details/:id">
+          <CharacterDetails />
+        </Route>
 
         <Route component={NotFound} />
 
