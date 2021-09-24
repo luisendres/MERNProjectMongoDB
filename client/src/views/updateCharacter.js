@@ -24,15 +24,15 @@ const UpdateCharacter = (props) => {
     const [Patron, setPatron] = useState("");
     const [GenRank, setGenRank] = useState("");
     const [Passion, setPassion] = useState("");
-    const [Health, setHealth] = useState(10);
-    const [Willpower, setWillpower] = useState(1);
-    const [EnergyType, setEnergyType] = useState("Vitality");
+    const [Health, setHealth] = useState();
+    const [Willpower, setWillpower] = useState();
+    const [EnergyType, setEnergyType] = useState("");
     const changeEnergyType = (value) => {
         setEnergyType(value);
     }
-    const [EnergyInt, setEnergyInt] = useState(10);
+    const [EnergyInt, setEnergyInt] = useState();
     const [VirtueType, setVirtueType] = useState("");
-    const [VirtueInt, setVirtureInt] = useState(7);
+    const [VirtueInt, setVirtureInt] = useState();
     const [Devoured, setDevoured] = useState();
     const [ShadowDeedNameSire, setShadowDeedNameSire] = useState("");
     const changeShadowDeedNameSire = (value) => {
@@ -52,14 +52,14 @@ const UpdateCharacter = (props) => {
                 setSubfaction3(res.data.Subfaction3);
                 setPatron(res.data.Patron);
                 setGenRank(res.data.GenRank);
-                setPassion(res.data.passion);
-                setHealth(res.data.health);
+                setPassion(res.data.Passion);
+                setHealth(res.data.Health);
                 setWillpower(res.data.Willpower);
                 setEnergyType(res.data.EnergyType);
-                setEnergyInt(res.data.setEnergyInt);
+                setEnergyInt(res.data.EnergyInt);
                 setVirtueType(res.data.VirtueType);
                 setVirtureInt(res.data.VirtueInt);
-                setDevoured(res.data.devoured);
+                setDevoured(res.data.Devoured);
                 setShadowDeedNameSire(res.data.ShadowDeedNameSire);
                 setSigil(res.data.Sigil);
             })
@@ -293,6 +293,7 @@ const UpdateCharacter = (props) => {
                                         onChange={(e)=>setHealth(e.target.value)}
                                         type="number" 
                                         className="form-control text-dark fw-bold"
+                                        placeholder={Health}
                                         value={Health}
                                         name="Health" />
                                 </div>
