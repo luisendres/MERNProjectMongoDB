@@ -39,14 +39,14 @@ const Login = ({ setLoggedIn, isLoggedIn }) => {
     };
 
     return (
-        <div className="d-flex justify-content-center gap-5">
+        <div className="d-flex justify-content-center gap-5 me-5">
             <div>
-                <img src="https://northwest-larpers.square.site/uploads/b/8e421cc0-5bf0-11ea-94a7-370806a9cf44/a1005f9bda8c16c56a5d00375baf7000.png?width=400" alt="" />
+                <img src="https://northwest-larpers.square.site/uploads/b/8e421cc0-5bf0-11ea-94a7-370806a9cf44/a1005f9bda8c16c56a5d00375baf7000.png?width=400" alt="" width="300" height="300"/>
             </div>
             <fieldset>
                 <legend>Sign In</legend>
                 
-                <form onSubmit={login}>
+                <form className="w-100 p-2 border border-dark d-flex flex-column mt-3" onSubmit={login}>
                     <p className="form-group">
                     <label>Email:</label>
                     <input
@@ -54,6 +54,7 @@ const Login = ({ setLoggedIn, isLoggedIn }) => {
                         name="email"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
+                        className="form-control"
                     />
                     </p>
                     <p className="form-group">
@@ -63,9 +64,10 @@ const Login = ({ setLoggedIn, isLoggedIn }) => {
                         name="email"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
+                        className="form-control"
                     />
                     </p>
-                    <input type="submit" value="Sign In" className="btn" />
+                    <input type="submit" value="Sign In" className="btn btn-outline-dark border-light border-2 text-light" />
                     <p className="error-message">{errorMessage ? errorMessage : ""}</p>
                 </form>
             </fieldset>
