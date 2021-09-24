@@ -39,32 +39,37 @@ const Login = ({ setLoggedIn, isLoggedIn }) => {
     };
 
     return (
-        <fieldset>
-            <legend>Sign In</legend>
-            
-            <form onSubmit={login}>
-                <p className="form-group">
-                <label>Email:</label>
-                <input
-                    type="text"
-                    name="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                />
-                </p>
-                <p className="form-group">
-                <label>Password:</label>
-                <input
-                    type="password"
-                    name="email"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                />
-                </p>
-                <input type="submit" value="Sign In" className="btn" />
-                <p className="error-message">{errorMessage ? errorMessage : ""}</p>
-            </form>
-        </fieldset>
+        <div className="d-flex justify-content-center gap-5">
+            <div>
+                <img src="https://northwest-larpers.square.site/uploads/b/8e421cc0-5bf0-11ea-94a7-370806a9cf44/a1005f9bda8c16c56a5d00375baf7000.png?width=400" alt="" />
+            </div>
+            <fieldset>
+                <legend>Sign In</legend>
+                
+                <form onSubmit={login}>
+                    <p className="form-group">
+                    <label>Email:</label>
+                    <input
+                        type="text"
+                        name="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+                    </p>
+                    <p className="form-group">
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        name="email"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                    />
+                    </p>
+                    <input type="submit" value="Sign In" className="btn" />
+                    <p className="error-message">{errorMessage ? errorMessage : ""}</p>
+                </form>
+            </fieldset>
+        </div>
     );
 };
 
