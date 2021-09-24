@@ -49,9 +49,9 @@ const Home = (props) => {
     };
     
     return(
-        <div>
-            <h1>AHHHHHHHHHHHHHHHHHHHHH</h1>
-            <table className=" w-50 table table-striped table-bordered">
+        <div className="d-flex justify-content-center">
+            {/* <h1>AHHHHHHHHHHHHHHHHHHHHH</h1> */}
+            <table className=" w-50 table table-striped table-bordered bg-light">
                     <thead>
                         <tr>
                             <th>Player Name</th>
@@ -63,9 +63,9 @@ const Home = (props) => {
                         {characters.map((ch) => {
                             return (
                                 <tr key={ch._id}>
-                                    <td>{ch.Name}</td>
                                     <td>{ch.PlayerName}</td>
-                                    <td>
+                                    <td>{ch.Name}</td>
+                                    <td className="d-flex justify-content-around">
                                         <Link to={`/${ch._id}`}>
                                             View 
                                         </Link>

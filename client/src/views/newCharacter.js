@@ -32,7 +32,6 @@ const NewCharacter = (props) => {
             });
     }, []);
 
-    // const { id } = useParams();
     const [Name, setName] = useState("");
     const [PlayerName, setPlayerName] = useState("");
     const [Faction, setFaction] = useState("");
