@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
     User_Id: {
-        type: Number
+        type: String
     },
     
     Name: {
@@ -47,37 +47,37 @@ const UserSchema = new mongoose.Schema({
     Health: {
         type: Number,
         default: 10,
-        required: [true, "Health is required"]
+        // required: [true, "Health is required"]
     },
 
     Willpower: {
         type: Number,
         default: 1,
-        required: [true, "Willpower is required"]
+        // required: [true, "Willpower is required"]
     },
 
     EnergyType: {
         type: String,
         default: "Vitality",
-        required: [true, "Energy type is required"]
+        // required: [true, "Energy type is required"]
     },
 
     EnergyInt: {
         type: Number,
         default: 10,
-        required: [true, "Energy number is required"]
+        // required: [true, "Energy number is required"]
     },
 
     VirtueType: {
         type: String,
         default: "Humanity",
-        required: [true, "Virtue type is required"]
+        // required: [true, "Virtue type is required"]
     },
 
     VirtueInt: {
         type: Number,
         default: 7,
-        required: [true, "Virtue number is required"]
+        // required: [true, "Virtue number is required"]
     },
 
     Devoured: {

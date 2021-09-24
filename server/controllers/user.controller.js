@@ -16,6 +16,17 @@ module.exports = {
             .catch((err) => res.status(400).json(err));
     },
 
+    createCharacter(req, res) {
+        const character = new Character(req.body);
+
+        character
+            .save()
+            .then(() => {
+                res.json({ msg: "success!", character: character });
+            })
+            .catch((err) => res.status(400).json(err));
+    },
+
     login(req, res) {
         User.findOne({ email: req.body.email })
             .then((user) => {
@@ -73,6 +84,11 @@ module.exports = {
 
     getAll(req, res) {
         User.find()
+            .then((users) => res.json(users))
+            .catch((err) => res.json(err));
+    },
+    getAllCharacters(req, res) {
+        Character.find()
             .then((users) => res.json(users))
             .catch((err) => res.json(err));
     },

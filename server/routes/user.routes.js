@@ -22,4 +22,7 @@ module.exports = (app) => {
     // app.get("/api/:id", userController.getOne);
     // app.delete("/api/:id", userController.delete);
     // app.put("/api/:id", userController.update);
+    app.get("/api/characters", userController.getAllCharacters);
+    app.post("/api/characters/new", userController.createCharacter);
+
 };
