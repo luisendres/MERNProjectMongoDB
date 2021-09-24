@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Human = (props) => {
     const [comSubfaction1, setComSubfaction1] = useState("");
     const [comSubfaction2, setComSubfaction2] = useState("");
+    const [comSubfaction3, setComSubfaction3] = useState("");
     const [errors, setErrors] = useState(props.errors);
 
     return (
@@ -87,9 +88,12 @@ const Human = (props) => {
             {comSubfaction1 === "Kinfolk" || comSubfaction1 === "Gifted Kinfolk" || comSubfaction2 === "Kinfolk" ?
                 <div className="col-4">
                     <select 
-                    onChange={(e)=>props.setSubfaction3(e.target.value)}
+                    onChange={(e)=> {
+                        props.setSubfaction3(e.target.value);
+                        setComSubfaction3(e.target.value);
+                    }}
                     className="form-select text-dark fw-bold"
-                    value=""
+                    value={comSubfaction3}
                     name="Subfaction3">
                         <option value="">Tribe</option>
                         <option value="Black Fury">Black Fury</option>

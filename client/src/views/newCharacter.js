@@ -56,22 +56,18 @@ const NewCharacter = (props) => {
     const changeEnergyType = (value) => {
         setEnergyType(value);
     }
-    const [EnergyInt, setEnergyInt] = useState();
+    const [EnergyInt, setEnergyInt] = useState(10);
     const [VirtueType, setVirtueType] = useState("");
-    const [VirtueInt, setVirtureInt] = useState();
+    const [VirtueInt, setVirtureInt] = useState(7);
     const [Devoured, setDevoured] = useState();
     const [ShadowDeedNameSire, setShadowDeedNameSire] = useState("");
+    const changeShadowDeedNameSire = (value) => {
+        setShadowDeedNameSire(value);
+    }
     const [Sigil, setSigil] = useState("");
     const [Bank, setBank] = useState();
     const [errors, setErrors] = useState(null);
     // const history = useHistory();
-
-    // const handleChanges = (fragmentKey, fragmentValue) => {
-    //     const fragmentKey = fragment[1];
-    //     const fragmentValue = fragment[2];
-
-
-    // }
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
@@ -152,12 +148,18 @@ const NewCharacter = (props) => {
                                         setFaction(e.target.value);
                                         if(e.target.value === "Vampire") {
                                             setEnergyType("Vitae");
+                                            setVirtueType("Road")
                                         } else if(e.target.value === "Shifter") {
                                             setEnergyType("Gnosis");
+                                            setVirtueType("Rage");
                                         } else if(e.target.value === "Wraith") {
                                             setEnergyType("Pathos");
+                                            setVirtueType("Angst");
+                                        } else if(e.target.value === "Human") {
+                                            setVirtueType("Humanity");
                                         }
                                     }}
+                                    className="form-control text-dark fw-bold"
                                     value={Faction} 
                                     name="Faction">
                                     <option></option>
@@ -173,11 +175,11 @@ const NewCharacter = (props) => {
                         <Human setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
                     }
                     {Faction === "Shifter" ?
-                        <Shifter Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} Subfaction2={Subfaction2} setSubfaction2={changeSubfaction2} 
+                        <Shifter Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setShadowDeedNameSire={changeShadowDeedNameSire} 
                         setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
                     }
                     {Faction === "Vampire" ?
-                        <Vampire setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
+                        <Vampire setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setSubfaction3={changeSubfaction3} setShadowDeedNameSire={changeShadowDeedNameSire} errors={errors} /> : ""
                     }
                     <div className="row">
                         {(Faction === "Shifter" || Subfaction1 === "Kinfolk" || Subfaction1 === "Gifted Kinfolk" || Subfaction2 === "Kinfolk") ?
@@ -213,7 +215,7 @@ const NewCharacter = (props) => {
                             </div> : ""
                         }
                         {Faction === "Wraith" ?
-                            <div>
+                            <div className="row">
                                 <div className="mb-3 col-4">
                                     <label className="form-label">Passion</label>
                                     <input 
@@ -223,24 +225,32 @@ const NewCharacter = (props) => {
                                         value={Passion}
                                         name="Passion" />
                                 </div>
-                                    <div className="mb-3 col-4">
-                                        <label className="form-label">Legion</label>
-                                        <select 
-                                            onChange={(e)=>setSubfaction1(e.target.value)}
-                                            type="text"
-                                            className="form-control text-dark fw-bold"
-                                            value={Subfaction1}
-                                            name="Subfaction1">
-                                            <option value="">Legion</option>
-                                            <option value="The Iron Legion">The Iron Legion</option>
-                                            <option value="The Skeletal Legion">The Skeletal Legion</option>
-                                            <option value="The Grim Legion">The Grim Legion</option>
-                                            <option value="The Penitent Legion">The Penitent Legion</option>
-                                            <option value="The Emerald Legion">The Emerald Legion</option>
-                                            <option value="The Silent Legion">The Silent Legion</option>
-                                            <option value="The Legion of Paupers">The Legion of Paupers</option>
-                                            <option value="The Legion of Fate">The Legion of Fate</option>
-                                        </select>
+                                <div className="mb-3 col-4">
+                                    <label className="form-label">Legion</label>
+                                    <select 
+                                        onChange={(e)=>setSubfaction1(e.target.value)}
+                                        className="form-control text-dark fw-bold"
+                                        value={Subfaction1}
+                                        name="Subfaction1">
+                                        <option value="">Legion</option>
+                                        <option value="The Iron Legion">The Iron Legion</option>
+                                        <option value="The Skeletal Legion">The Skeletal Legion</option>
+                                        <option value="The Grim Legion">The Grim Legion</option>
+                                        <option value="The Penitent Legion">The Penitent Legion</option>
+                                        <option value="The Emerald Legion">The Emerald Legion</option>
+                                        <option value="The Silent Legion">The Silent Legion</option>
+                                        <option value="The Legion of Paupers">The Legion of Paupers</option>
+                                        <option value="The Legion of Fate">The Legion of Fate</option>
+                                    </select>
+                                </div>
+                                <div className="mb-3 col-4">
+                                    <label className="form-label">Shadow</label>
+                                    <input 
+                                        onChange={(e)=> {setShadowDeedNameSire(e.target.value)}}
+                                        type="text"
+                                        className="form-control text-dark fw-bold"
+                                        value={ShadowDeedNameSire}
+                                        name="ShadowDeedNameSire" />
                                 </div>
                             </div> : ""
                         }
@@ -280,12 +290,28 @@ const NewCharacter = (props) => {
                                 </div>
                         </div> : ""
                     }
+                    {Faction ?
+                        <div className="row">
+                            <div className="mb-3 col-4">
+                                <div className="d-flex flex-column">
+                                    <label className="form-label">{VirtueType}</label>
+                                    <input 
+                                        onChange={(e)=>setVirtureInt(e.target.value)}
+                                        value={VirtueInt}
+                                        className="form-control text-dark fw-bold"
+                                        type="number" 
+                                        name="VirtueInt" />
+                                </div>
+                            </div>
+                        </div> : ""
+                    }
                     <input type="submit" className="bg-dark border-light border-2 text-light" />
                     <h3 className="text-light">Subfaction1: {Subfaction1}</h3>
                     <h3 className="text-light">Subfaction2: {Subfaction2}</h3>
                     <h3 className="text-light">Subfaction3: {Subfaction3}</h3>
-                    <h3 className="text-light">Patron: {Patron}</h3>
-                    <h3 className="text-light">Energy Type: {EnergyType}</h3>
+                    <h2>Gen/Rank: {GenRank}</h2>
+                    <h3 className="text-light">Virtue Type: {VirtueType}</h3>
+                    <h3 className="text-light">Shadow/DeedName/Sire: {ShadowDeedNameSire}</h3>
                 </form>
             </div>
             <div className="row">
