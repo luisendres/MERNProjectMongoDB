@@ -46,13 +46,13 @@ const Home = (props) => {
                                     <td>{ch.Name}</td>
                                     <td>{ch.PlayerName}</td>
                                     <td>
-                                        {/* <Link to={`/${ch._id}`}>
-                                            details 
+                                        <Link to={`/${ch._id}`}>
+                                            View 
                                         </Link>
                                         <span> | </span>
-                                        <Link to={`/${ch._id}/edit`}>
-                                            edit
-                                        </Link> */}
+                                        <Link to={`/player/character/update/${ch._id}`}>
+                                            Update
+                                        </Link>
                                     </td>
                                 </tr>
                             )

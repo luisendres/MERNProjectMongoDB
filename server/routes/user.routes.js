@@ -24,6 +24,8 @@ module.exports = (app) => {
     // app.put("/api/:id", userController.update);
     app.get("/api/characters", userController.getAllCharacters);
     app.get("/api/users/characters/:id", userController.getUserCharacters);
+    app.get("/api/users/character/:id", userController.getCharacterDetail);
     app.post("/api/characters/new", userController.createCharacter);
-
+    app.put("/api/users/character/:id", userController.updateCharacter);
+    app.delete("/api/users/characters/:id", userController.deleteCharacter);
 };

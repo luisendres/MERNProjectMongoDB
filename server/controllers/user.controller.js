@@ -98,11 +98,41 @@ module.exports = {
             .then((user) => res.json(user))
             .catch((err) => res.json(err));
     },
+    getCharacterDetail(req, res) {
+        Character.find({ _id: req.params.id })
+            .then((character) => res.json(character))
+            .catch((err) => res.json(err));
+    },
     getUserCharacters(req, res) {
         Character.find({ User_Id: req.params.id })
             .then((character) => res.json(character))
             .catch((err) => res.json(err));
     },
+    deleteCharacter(req, res) {
+        console.log("delete method executed", "url params:", req.params);
+
+        Character.findByIdAndDelete(req.params.id)
+        .then((character) => {
+            res.json(character)
+        })
+        .catch((err) => {
+            res.status(400).json(err);
+        });
+    },
+    updateCharacter(req, res) {
+        console.log("update method executed", "url params:", req.params);
+
+        Character.findByIdAndUpdate(req.params.id, req.body, {
+            runValidators: true, // Run model validations again.
+            new: true, //return newly updated document.
+        })
+        .then((character) => {
+            res.json(character);
+        })
+        .catch((err) => {
+            res.status(400).json(err);
+        });
+    }
 };
 
 // //Export an object that is full of methods.

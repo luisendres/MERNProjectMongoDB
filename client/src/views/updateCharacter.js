@@ -1,7 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import Navbar from "../components/navbar";
 
 const UpdateCharacter = (props) => {
     const { id } = useParams();
@@ -9,9 +8,24 @@ const UpdateCharacter = (props) => {
     const [errors, setErrors] = useState(null);
     const history = useHistory();
 
+    const getCharacters = async () => {
+        const character = await axios.get("http://localhost:8000/api/users/character/" + id);
+        setCharacter(character.data.res)
+    }
+
+    // const getUsers = async () => {
+    //     const users = await axios.get('https://randomuser.me/api/?page=1&results=10&nat=us');
+    //     setUsers(users.data.results);
+    // };
+
+    useEffect(() => {
+        getCharacters();
+        
+    }, [id]);
+
     const handleOnChange = (e) => {
         const key = e.target.name;
-        
+
         setCharacter({...character, [key]: e.target.value});
     }
 
@@ -22,15 +36,19 @@ const UpdateCharacter = (props) => {
 
 
         axios
-            .put("http://localhost:8000/api/characters/", character)
+            .put("http://localhost:8000/api/users/character/" + character._id, character)
             .then((res) => {
                 console.log(res.data);
-                history.pushState(`/player/${id}`);
+                // history.push(`/player/${id}`);
             })
             .catch((err) => {
                 setErrors(err.response.data.errors);
                 console.log(err.response);
-            })
+            });
+    };
+
+    if(character == null) {
+        return <p>Loading...</p>
     }
 
     return (
@@ -75,7 +93,7 @@ const UpdateCharacter = (props) => {
                 <input type="submit" className="bg-info border-dark border-2 text-white" />
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default UpdateCharacter;
