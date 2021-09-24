@@ -27,6 +27,26 @@ const Home = (props) => {
                 console.log(err.response);
             });
     }, []);
+
+    const handleDelete = (delId, delName) => {
+        if(window.confirm(`Are you sure you want to delete ${delName}`))
+        {
+            axios
+            .delete("http://localhost:8000/api/users/characters/" + delId)
+            .then((res) => {
+                // It has successfully been deleted from the DATABASE
+                // It is still IN our state, we need to remove it from state.
+                const filterCharacters = characters.filter((ch) => {
+                    return ch._id !== delId;
+                });
+
+                setCharacters(filterCharacters);
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+        }
+    };
     
     return(
         <div>
@@ -53,6 +73,15 @@ const Home = (props) => {
                                         <Link to={`/player/character/update/${ch._id}`}>
                                             Update
                                         </Link>
+                                        <span> | </span>
+                                        <button
+                                            onClick={(e) => {
+                                                handleDelete(ch._id, ch.Name);
+                                            }}
+                                            className="btn btn-sm btn-outline-danger"
+                                        >
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             )

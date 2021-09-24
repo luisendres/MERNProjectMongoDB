@@ -9,7 +9,7 @@ const UpdateCharacter = (props) => {
     const history = useHistory();
 
     const getCharacters = async () => {
-        const character = await axios.get("http://localhost:8000/api/users/character/" + id);
+        const Character = await axios.get("http://localhost:8000/api/users/character/" + id);
         setCharacter(character.data.res)
     }
 
@@ -18,9 +18,19 @@ const UpdateCharacter = (props) => {
     //     setUsers(users.data.results);
     // };
 
+    // useEffect(() => {
+    //     axios
+    //         .get("http://localhost:8000/api/users/character/" + id)
+    //         .then((res) => {
+    //             setCharacter(res.data);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         })
+    // }, [id]);
+
     useEffect(() => {
         getCharacters();
-        
     }, [id]);
 
     const handleOnChange = (e) => {
@@ -47,9 +57,9 @@ const UpdateCharacter = (props) => {
             });
     };
 
-    if(character == null) {
-        return <p>Loading...</p>
-    }
+    // if(character == null) {
+    //     return <p>Loading...</p>
+    // }
 
     return (
         <div>
