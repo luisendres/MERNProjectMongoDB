@@ -99,7 +99,9 @@ module.exports = {
             .catch((err) => res.json(err));
     },
     getCharacterDetail(req, res) {
-        Character.find({ _id: req.params.id })
+        console.log("getCharacterDetail method executed", "url params:", req.params);
+
+        Character.findById({ _id: req.params.id })
             .then((character) => res.json(character))
             .catch((err) => res.json(err));
     },

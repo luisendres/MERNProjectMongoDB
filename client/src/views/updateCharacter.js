@@ -8,29 +8,15 @@ const UpdateCharacter = (props) => {
     const [errors, setErrors] = useState(null);
     const history = useHistory();
 
-    const getCharacters = async () => {
-        const Character = await axios.get("http://localhost:8000/api/users/character/" + id);
-        setCharacter(character.data.res)
-    }
-
-    // const getUsers = async () => {
-    //     const users = await axios.get('https://randomuser.me/api/?page=1&results=10&nat=us');
-    //     setUsers(users.data.results);
-    // };
-
-    // useEffect(() => {
-    //     axios
-    //         .get("http://localhost:8000/api/users/character/" + id)
-    //         .then((res) => {
-    //             setCharacter(res.data);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
-    // }, [id]);
-
     useEffect(() => {
-        getCharacters();
+        axios
+            .get("http://localhost:8000/api/users/character/" + id)
+            .then((res) => {
+                setCharacter(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }, [id]);
 
     const handleOnChange = (e) => {
@@ -44,12 +30,11 @@ const UpdateCharacter = (props) => {
 
         setCharacter({...character, User_Id: id});
 
-
         axios
             .put("http://localhost:8000/api/users/character/" + character._id, character)
             .then((res) => {
                 console.log(res.data);
-                // history.push(`/player/${id}`);
+                history.push("/");
             })
             .catch((err) => {
                 setErrors(err.response.data.errors);
@@ -57,9 +42,9 @@ const UpdateCharacter = (props) => {
             });
     };
 
-    // if(character == null) {
-    //     return <p>Loading...</p>
-    // }
+    while(character == null) {
+        return <p>Loading...</p>
+    }
 
     return (
         <div>
