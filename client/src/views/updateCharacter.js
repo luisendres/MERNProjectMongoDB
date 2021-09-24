@@ -321,7 +321,7 @@ const UpdateCharacter = (props) => {
                         </div>
                     </div> : ""
                 }
-                <input type="submit" className="bg-dark border-light border-2 text-light" />
+                <input type="submit" className="btn btn-outline-dark border-light border-2 text-light"  />
             </form>
         </div>
     );
