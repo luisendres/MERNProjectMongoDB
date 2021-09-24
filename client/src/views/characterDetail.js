@@ -3,9 +3,13 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 
 const CharacterDetails = (props) => {
+    const history = useHistory();
+    if(!props.isLoggedIn) {
+        history.push("/")
+    }
+    
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
-    const history = useHistory();
 
     useEffect(() => {
         axios
