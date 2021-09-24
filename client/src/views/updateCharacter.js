@@ -77,7 +77,26 @@ const UpdateCharacter = (props) => {
     const handleOnSubmit = (e) => {
         e.preventDefault();
 
-        setCharacter({...character, User_Id: id});
+        const character = {
+            Name: character.Name,
+            PlayerName: character.PlayerName,
+            Faction: character.Faction,
+            Subfaction1,
+            Subfaction2,
+            Subfaction3,
+            Patron,
+            GenRank,
+            Passion,
+            Health,
+            Willpower,
+            EnergyType,
+            EnergyInt,
+            VirtueType,
+            VirtueInt,
+            Devoured,
+            ShadowDeedNameSire,
+            Sigil
+        }
 
         axios
             .put("http://localhost:8000/api/users/character/" + character._id, character)
@@ -96,47 +115,6 @@ const UpdateCharacter = (props) => {
     }
 
     return (
-        // <div>
-        //     <form onSubmit={handleOnSubmit} className="border-light border-2">
-        //         <div className="mb-3">
-        //             <label className="form-label">Name</label>
-        //             {errors?.Name && (
-        //                 <span className="text-danger"> {errors?.Name?.message}</span>
-        //             )}
-        //             <input 
-        //                 onChange={(e)=>handleOnChange(e)} 
-        //                 type="text" 
-        //                 className="form-control" 
-        //                 value={character.Name}
-        //                 name="Name"/>
-        //         </div>
-        //         <div className="mb-3">
-        //             <label className="form-label">Player Name</label>
-        //             {errors?.PlayerName && (
-        //                 <span className="text-danger"> {errors?.PlayerName?.message}</span>
-        //             )}
-        //             <input 
-        //                 onChange={(e)=>handleOnChange(e)} 
-        //                 type="text" 
-        //                 className="form-control" 
-        //                 value={character.PlayerName}
-        //                 name="PlayerName"/>
-        //         </div>
-        //         <div className="mb-3">
-        //             <label className="form-label">Faction</label>
-        //             {errors?.Faction && (
-        //                 <span className="text-danger"> {errors?.descripFaction?.message}</span>
-        //             )}
-        //             <input 
-        //                 onChange={(e)=>handleOnChange(e)} 
-        //                 type="text" 
-        //                 className="form-control" 
-        //                 value={character.Faction}
-        //                 name="Faction"/>
-        //         </div>
-        //         <input type="submit" className="bg-info border-dark border-2 text-white" />
-        //     </form>
-        // </div>
         <div className="mt-5 d-flex justify-content-center row">
             <form onSubmit={(e) => {
                 handleOnSubmit(e);
@@ -201,14 +179,13 @@ const UpdateCharacter = (props) => {
                     </div>
                 </div>
                 {character.Faction === "Human" ?
-                    <Human setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
+                    <Human Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} Subfaction2={Subfaction2} setSubfaction2={changeSubfaction2} Subfaction3={Subfaction3} setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
                 }
                 {character.Faction === "Shifter" ?
-                    <Shifter Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setShadowDeedNameSire={changeShadowDeedNameSire} 
-                    setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
+                    <Shifter Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} Subfaction2={Subfaction2} setSubfaction2={changeSubfaction2} ShadowDeedNameSire={ShadowDeedNameSire} setShadowDeedNameSire={changeShadowDeedNameSire} Subfaction3={Subfaction3} setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
                 }
                 {character.Faction === "Vampire" ?
-                    <Vampire setSubfaction1={changeSubfaction1} setSubfaction2={changeSubfaction2} setSubfaction3={changeSubfaction3} setShadowDeedNameSire={changeShadowDeedNameSire} errors={errors} /> : ""
+                    <Vampire Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} Subfaction2={Subfaction2} setSubfaction2={changeSubfaction2} Subfaction3={Subfaction3} setSubfaction3={changeSubfaction3} ShadowDeedNameSire={ShadowDeedNameSire} setShadowDeedNameSire={changeShadowDeedNameSire} errors={errors} /> : ""
                 }
                 <div className="row">
                     {(character.Faction === "Shifter" || Subfaction1 === "Kinfolk" || Subfaction1 === "Gifted Kinfolk" || Subfaction2 === "Kinfolk") ?

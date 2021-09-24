@@ -12,6 +12,7 @@ const Vampire = (props) => {
                         <select 
                         onChange={(e)=>props.setSubfaction1(e.target.value)}
                         className="form-select text-dark fw-bold"
+                        value={props.Subfaction1}
                         name="Subfaction1">
                             <option value=""></option>
                             <option value="Assamite">Assamite</option>
@@ -42,6 +43,7 @@ const Vampire = (props) => {
                         <select 
                             onChange={(e)=>props.setSubfaction2(e.target.value)}
                             className="form-select text-dark fw-bold"
+                            value={props.Subfaction2}
                             name="Subfaction2">
                                 <option value=""></option>
                                 <option value="Humanity">Humanity</option>
@@ -66,6 +68,7 @@ const Vampire = (props) => {
                             onChange={(e)=>props.setShadowDeedNameSire(e.target.value)}
                             className="form-select text-dark fw-bold"
                             type="text"
+                            value={props.ShadowDeedNameSire}
                             name="ShadowDeedNameSire" />
                     </div>
                 </div>

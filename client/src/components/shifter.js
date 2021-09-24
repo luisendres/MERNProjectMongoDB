@@ -15,6 +15,7 @@ const Shifter = (props) => {
                     <select 
                         onChange={(e)=>props.setSubfaction1(e.target.value)}
                         className="form-select text-dark fw-bold"
+                        value={props.Subfaction1}
                         name="Subfaction1">
                             <option value=""></option>
                             <option value="Black Fury">Black Fury</option>
@@ -35,6 +36,7 @@ const Shifter = (props) => {
                     <select 
                     onChange={(e)=>props.setSubfaction2(e.target.value)}
                     className="form-select text-dark fw-bold" 
+                    value={props.Subfaction2}
                     name="Subfaction2">
                         <option value=""></option>
                         <option value="Homid">Homid</option>
@@ -47,6 +49,7 @@ const Shifter = (props) => {
                     <select 
                     onChange={(e)=>props.setSubfaction3(e.target.value)}
                     className="form-select text-dark fw-bold" 
+                    value={props.Subfaction3}
                     name="Subfaction3">
                         <option value=""></option>
                         <option value="Ragabash">Ragabash</option>
@@ -63,6 +66,7 @@ const Shifter = (props) => {
                             onChange={(e)=>{props.setShadowDeedNameSire(e.target.value)}}
                             className="form-control text-dark fw-bold"
                             type="text" 
+                            value={props.ShadowDeedNameSire}
                             name="Deed Name" />
                     </div>
                 </div>

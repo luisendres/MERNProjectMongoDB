@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 const Human = (props) => {
-    const [comSubfaction1, setComSubfaction1] = useState("");
-    const [comSubfaction2, setComSubfaction2] = useState("");
-    const [comSubfaction3, setComSubfaction3] = useState("");
+    const [comSubfaction1, setComSubfaction1] = useState(props.Subfaction1);
+    const [comSubfaction2, setComSubfaction2] = useState(props.Subfaction2);
+    const [comSubfaction3, setComSubfaction3] = useState(props.Subfaction3);
     const [errors, setErrors] = useState(props.errors);
 
     return (
@@ -26,7 +26,7 @@ const Human = (props) => {
                         }
                     }}
                     className="form-select text-dark fw-bold"
-                    value={comSubfaction1}
+                    value={props.Subfaction1}
                     name="Subfaction1">
                         <option value="">Type</option>
                         <option value="Commoner">Commoner</option>
@@ -37,7 +37,7 @@ const Human = (props) => {
                         <option value="Fomori" id="Essence">Fomori</option>
                 </select>
             </div>
-            { comSubfaction1 === "Ghoul" ?
+            { comSubfaction1 === "Ghoul" || props.Subfaction1 === "Ghoul" ?
                 <div className="col-4">
                     <select 
                     onChange={(e)=> {
@@ -45,7 +45,7 @@ const Human = (props) => {
                         setComSubfaction2(e.target.value);
                     }}
                     className="form-select text-dark fw-bold"
-                    value={comSubfaction2}
+                    value={props.Subfaction2}
                     name="Subfaction2">
                         <option value ="">Clan</option>
                         <option value="Assamite">Assamite</option>
@@ -70,7 +70,7 @@ const Human = (props) => {
                     </select>
                 </div> : ""
             }
-            {comSubfaction1 === "Sorcerer" ?
+            {comSubfaction1 === "Sorcerer" || props.Subfaction1 === "Sorcerer" ?
                 <div className="col-4">
                     <select 
                     onChange={(e)=> {
@@ -78,14 +78,15 @@ const Human = (props) => {
                         setComSubfaction2(e.target.value);
                     }}
                     className="form-select text-dark fw-bold"
-                    value={comSubfaction2}
+                    value={props.Subfaction2}
                     name="Subfaction2">
                         <option value="">Not Kinfolk</option>
                         <option value="Kinfolk">Kinfolk</option>
                     </select>
                 </div> : ""
             }
-            {comSubfaction1 === "Kinfolk" || comSubfaction1 === "Gifted Kinfolk" || comSubfaction2 === "Kinfolk" ?
+            {comSubfaction1 === "Kinfolk" || comSubfaction1 === "Gifted Kinfolk" || comSubfaction2 === "Kinfolk"
+            || props.Subfaction1 === "Kinfolk" || props.Subfaction1 === "Gifted Kinfolk" || props.Subfaction2 === "Kinfolk" ?
                 <div className="col-4">
                     <select 
                     onChange={(e)=> {
@@ -93,7 +94,7 @@ const Human = (props) => {
                         setComSubfaction3(e.target.value);
                     }}
                     className="form-select text-dark fw-bold"
-                    value={comSubfaction3}
+                    value={props.Subfaction3}
                     name="Subfaction3">
                         <option value="">Tribe</option>
                         <option value="Black Fury">Black Fury</option>
