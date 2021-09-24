@@ -24,8 +24,49 @@ const CharacterDetails = (props) => {
     }
 
     return (
-        <div className="w-75 border border-light border-2 p-3 mt-3">
-            <h4 className="me-5">Details about {character.Name}</h4>
+        <div className="d-flex justify-content-center">
+            <table className="table table-bordered w-75 border border-dark border-2 bg-light">
+                <tbody>
+                    <tr className="bg-secondary">
+                        <td>Character Name:</td>
+                        <td>Player Name:</td>
+                        <td>Faction:</td>
+                    </tr>
+                    <tr>
+                        <td>{character.Name}</td>
+                        <td>{character.PlayerName}</td>
+                        <td>{character.Faction}</td>
+                    </tr>
+                    <tr className="bg-secondary">
+                        <td colSpan="3">Subfactions: <em>(Tribe, Breed, Clan, Auspice, Legion, Guild, Ghoul, Kinfolk, Path)</em></td>
+                    </tr>
+                    <tr>
+                        <td>{character.Subfaction1}</td>
+                        <td>{character.Subfaction2}</td>
+                        <td>{character.Subfaction3}</td>
+                    </tr>
+                    <tr className="bg-secondary">
+                        <td>Patron:</td>
+                        <td>Gen/Rank:</td>
+                        <td>Passion:</td>
+                    </tr>
+                    <tr>
+                        <td>{character.Patron}</td>
+                        <td>{character.GenRank}</td>
+                        <td>{character.Passion}</td>
+                    </tr>
+                    <tr className="bg-secondary">
+                        <td>Health:</td>
+                        <td>Willpower:</td>
+                        <td>{character.EnergyType}:</td>
+                        <td>{character.VirtueType}</td>
+                        <td>Devoured:</td>
+                        <td>Shadow - Deed Name - Sire</td>
+                    </tr>
+                    <tr></tr>
+                </tbody>
+
+            </table>
         </div>
     )
 };
