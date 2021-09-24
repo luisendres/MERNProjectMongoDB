@@ -29,7 +29,12 @@ const CharacterDetails = (props) => {
 
     return (
         <div className="d-flex justify-content-center">
-            <table className="table table-bordered w-75 border border-dark border-2 bg-light">
+            <table className="table table-bordered w-75 border border-dark border-2 bg-light" id="character sheet">
+                <thead>
+                    <tr className="fw-bold">
+                        <th colSpan="6" className="fs-2"><img src="https://northwest-larpers.square.site/uploads/b/8e421cc0-5bf0-11ea-94a7-370806a9cf44/a1005f9bda8c16c56a5d00375baf7000.png" alt="shadow accord logo" width="50" height="50" className="me-2"/> Shadow Accord</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr className="bg-secondary fw-bold">
                         <td colspan="2">Character Name:</td>
