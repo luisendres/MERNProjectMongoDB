@@ -70,7 +70,10 @@ const CharacterDetails = (props) => {
                     <tr className="fw-bold">
                         <td>{character.Health}</td>
                         <td>{character.Willpower}</td>
-                        <td>{}</td>
+                        <td>{character.EnergyInt}</td>
+                        <td>{character.VirtueInt}</td>
+                        <td>{character.Devoured}</td>
+                        <td>{character.ShadowDeedNameSire}</td>
                     </tr>
                 </tbody>
             </table>
