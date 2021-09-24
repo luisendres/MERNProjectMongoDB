@@ -8,7 +8,9 @@ import Human from "../components/human";
 
 const UpdateCharacter = (props) => {
     const { id } = useParams();
-    const [character, setCharacter] = useState(null);
+    const [Name, setName] = useState("");
+    const [PlayerName, setPlayerName] = useState("");
+    const [Faction, setFaction] = useState("");
     const [Subfaction1, setSubfaction1] = useState("");
     const changeSubfaction1 = (value) => {
         setSubfaction1(value);
@@ -46,7 +48,9 @@ const UpdateCharacter = (props) => {
         axios
             .get("http://localhost:8000/api/users/character/" + id)
             .then((res) => {
-                setCharacter(res.data);
+                setName(res.data.Name);
+                setPlayerName(res.data.PlayerName);
+                setFaction(res.data.Faction);
                 setSubfaction1(res.data.Subfaction1);
                 setSubfaction2(res.data.Subfaction2);
                 setSubfaction3(res.data.Subfaction3);
@@ -68,19 +72,13 @@ const UpdateCharacter = (props) => {
             })
     }, [id]);
 
-    const handleOnChange = (e) => {
-        const key = e.target.name;
-
-        setCharacter({...character, [key]: e.target.value});
-    }
-
     const handleOnSubmit = (e) => {
         e.preventDefault();
 
         const character = {
-            Name: character.Name,
-            PlayerName: character.PlayerName,
-            Faction: character.Faction,
+            Name,
+            PlayerName,
+            Faction,
             Subfaction1,
             Subfaction2,
             Subfaction3,
@@ -99,7 +97,7 @@ const UpdateCharacter = (props) => {
         }
 
         axios
-            .put("http://localhost:8000/api/users/character/" + character._id, character)
+            .put("http://localhost:8000/api/users/character/" + id, character)
             .then((res) => {
                 console.log(res.data);
                 history.push("/");
@@ -110,7 +108,7 @@ const UpdateCharacter = (props) => {
             });
     };
 
-    while(character == null) {
+    while(Name == null) {
         return <p>Loading...</p>
     }
 
@@ -126,10 +124,10 @@ const UpdateCharacter = (props) => {
                             <span className="text-danger"> {errors?.Name?.message}</span>
                         )}
                         <input 
-                            onChange={(e)=>handleOnChange(e)} 
+                            onChange={(e)=>setName(e.target.value)} 
                             type="text" 
                             className="form-control text-dark fw-bold" 
-                            value={character.Name}
+                            value={Name}
                             name="Name"/>
                     </div>
                     <div className="mb-3 col-4">
@@ -138,21 +136,21 @@ const UpdateCharacter = (props) => {
                             <span className="text-danger"> {errors?.PlayerName?.message}</span>
                         )}
                         <input 
-                            onChange={(e)=>handleOnChange(e)} 
+                            onChange={(e)=>PlayerName(e.target.value)} 
                             type="text" 
                             className="form-control text-dark fw-bold" 
-                            value={character.PlayerName}
+                            value={PlayerName}
                             name="PlayerName"/>
                     </div>
                     <div className="mb-3 col-4">
                         <div className="d-flex flex-column">
                             <label className="form-label">Faction</label>
                             {errors?.Faction && (
-                                <span className="text-danger"> {errors?.descripFaction?.message}</span>
+                                <span className="text-danger"> {errors?.Faction?.message}</span>
                             )}
                             <select 
                                 onChange={(e)=> {
-                                    handleOnChange(e);
+                                    setFaction(e.target.value);
                                     if(e.target.value === "Vampire") {
                                         setEnergyType("Vitae");
                                         setVirtueType("Road")
@@ -167,7 +165,7 @@ const UpdateCharacter = (props) => {
                                     }
                                 }}
                                 className="form-control text-dark fw-bold"
-                                value={character.Faction} 
+                                value={Faction} 
                                 name="Faction">
                                 <option></option>
                                 <option value="Human">Human</option>
@@ -178,21 +176,21 @@ const UpdateCharacter = (props) => {
                         </div>
                     </div>
                 </div>
-                {character.Faction === "Human" ?
+                {Faction === "Human" ?
                     <Human Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} Subfaction2={Subfaction2} setSubfaction2={changeSubfaction2} Subfaction3={Subfaction3} setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
                 }
-                {character.Faction === "Shifter" ?
+                {Faction === "Shifter" ?
                     <Shifter Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} Subfaction2={Subfaction2} setSubfaction2={changeSubfaction2} ShadowDeedNameSire={ShadowDeedNameSire} setShadowDeedNameSire={changeShadowDeedNameSire} Subfaction3={Subfaction3} setSubfaction3={changeSubfaction3} setEnergyType={changeEnergyType} errors={errors} /> : ""
                 }
-                {character.Faction === "Vampire" ?
+                {Faction === "Vampire" ?
                     <Vampire Subfaction1={Subfaction1} setSubfaction1={changeSubfaction1} Subfaction2={Subfaction2} setSubfaction2={changeSubfaction2} Subfaction3={Subfaction3} setSubfaction3={changeSubfaction3} ShadowDeedNameSire={ShadowDeedNameSire} setShadowDeedNameSire={changeShadowDeedNameSire} errors={errors} /> : ""
                 }
                 <div className="row">
-                    {(character.Faction === "Shifter" || Subfaction1 === "Kinfolk" || Subfaction1 === "Gifted Kinfolk" || Subfaction2 === "Kinfolk") ?
+                    {(Faction === "Shifter" || Subfaction1 === "Kinfolk" || Subfaction1 === "Gifted Kinfolk" || Subfaction2 === "Kinfolk") ?
                         <div className="mb-3 col-4">
                             <div className="d-flex flex-column">
                                 <label className="form-label">Patron</label>
-                                    {errors?.(character.Faction) && (
+                                    {errors?.(Faction) && (
                                         <span className="text-danger"> {errors?.descripFaction?.message}</span>
                                     )}
                                 <input 
@@ -204,10 +202,10 @@ const UpdateCharacter = (props) => {
                             </div>
                         </div> : ""
                     }
-                    {(character.Faction === "Vampire" || character.Faction === "Shifter") ? 
+                    {(Faction === "Vampire" || Faction === "Shifter") ? 
                         <div className="mb-3 col-4">
                             <div className="d-flex flex-column">
-                                {character.Faction === "Vampire" ?
+                                {Faction === "Vampire" ?
                                     <label className="form-label">Generation</label> :
                                     <label className="form-label">Rank</label>
                                 }
@@ -220,7 +218,7 @@ const UpdateCharacter = (props) => {
                             </div>
                         </div> : ""
                     }
-                    {character.Faction === "Wraith" ?
+                    {Faction === "Wraith" ?
                         <div className="row">
                             <div className="mb-3 col-4">
                                 <label className="form-label">Passion</label>
@@ -261,7 +259,7 @@ const UpdateCharacter = (props) => {
                         </div> : ""
                     }
                 </div>
-                {character.Faction ?
+                {Faction ?
                     <div className="row">
                             <div className="mb-3 col-4">
                                 <div className="d-flex flex-column">
@@ -297,7 +295,7 @@ const UpdateCharacter = (props) => {
                             </div>
                     </div> : ""
                 }
-                {character.Faction ?
+                {Faction ?
                     <div className="row">
                         <div className="mb-3 col-4">
                             <div className="d-flex flex-column">
