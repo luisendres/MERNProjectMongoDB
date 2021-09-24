@@ -7,7 +7,7 @@ import axios from "axios";
 import Registration from './views/Registration';
 import Home from './views/userHome';
 import NewCharacter from './views/newCharacter';
-import TEST from './views/tester';
+// import TEST from './views/tester';
 import Login from './views/Login';
 import Navbar from './components/navbar';
 import NavOut from './components/navOut';
@@ -54,29 +54,26 @@ function App() {
       {isLoggedIn ? <NavLog/> : <NavOut />}
       {isLoggedIn && <button onClick={logout}>Logout</button>}
       <Switch >
-        {/* <Route exact path="/">
-          
-        </Route> */}
         <Route exact path="/">
           <Login setLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
-        </Route>
-
-        <Route exact path="/test">
-          <TEST isLoggedIn = {isLoggedIn}/>
         </Route>
 
         <Route exact path="/register">
           <Registration />
         </Route>
+
+        <Route exact path="/home/:id">
+          <Home isLoggedIn={isLoggedIn}/>
+        </Route>
+
+
         <Route exact path="/player/character/new/:id">
           <NewCharacter isLoggedIn={isLoggedIn}/>
         </Route>
+
         <Route exact path="/update">
           <UpdateCharacter />
         </Route>
-        {/* <Route exact path="/login">
-          <Login setLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
-        </Route> */}
 
         <Route component={NotFound} />
 

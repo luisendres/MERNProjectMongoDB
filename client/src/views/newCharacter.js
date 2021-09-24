@@ -27,6 +27,7 @@ const NewCharacter = (props) => {
             .catch((err) => {
                 console.log("not authorized");
                 console.log(err.response);
+                // history.push(`/home`);
                 history.push(`/`);
             });
     }, []);

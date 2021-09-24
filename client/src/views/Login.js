@@ -5,8 +5,11 @@ import axios from "axios";
 
 const Login = ({ setLoggedIn, isLoggedIn }) => {
     const history = useHistory();
+    // if(isLoggedIn) {
+    //     history.goBack();
+    // }
     if(isLoggedIn) {
-        history.goBack();
+        history.push(`/home/${isLoggedIn._id}`);
     }
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,9 +27,9 @@ const Login = ({ setLoggedIn, isLoggedIn }) => {
             }
         )
         .then((res) => {
-            console.log(res);
+            console.log(res.data);
             setLoggedIn(res.data);
-            history.push(`/test`);
+            // history.push(`/home/${res.data._id}`);
         })
         .catch((err) => {
             console.log(err);

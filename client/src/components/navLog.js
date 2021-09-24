@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 
 
 const NavLog = (props) => {
-    console.log("test props", props);
+    // console.log("test props", props);
 
     const [users, setUsers] = useState([]);
     useEffect(() => {
@@ -34,28 +34,20 @@ const NavLog = (props) => {
                         <div className="collapse navbar-collapse col-auto" id="navbarNavDropdown">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">Home</a>
+                                    {/* <a className="nav-link" href={`/home/${users._id}`}>Home</a> */}
+                                    <Link to={`/home/${users._id}`}>
+                                        <a className="nav-link">Home</a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={`/player/character/new/${users._id}`}>
                                         <a className="nav-link">My Characters</a>
                                     </Link>
-                                    <Link to={"/test"}>
-                                        <a className="nav-link">test</a>
-                                    </Link>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Events</a>
                                 </li>
-                                {/* The below snippet will only activate if the user is assigned to any of these roles ie one of these booleans has to be true */}
-                                {/* { (user.Storyteller || user.CharacterGuide || user.CheckIn) ? 
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="#">Manage Players</a>
-                                    </li> : ""
-                                } */}
-                                <li className="nav-item">
-                                    {/* <a className="nav-link text-decoration-underline" onClick={handleLogout}>Logout ({user})</a> */}
-                                </li>
+                                
                             </ul>
                         </div>               
                     </div>

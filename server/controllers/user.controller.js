@@ -89,13 +89,18 @@ module.exports = {
     },
     getAllCharacters(req, res) {
         Character.find()
-            .then((users) => res.json(users))
+            .then((character) => res.json(character))
             .catch((err) => res.json(err));
     },
 
     getOne(req, res) {
         User.findOne({ _id: req.params.id })
             .then((user) => res.json(user))
+            .catch((err) => res.json(err));
+    },
+    getUserCharacters(req, res) {
+        Character.find({ User_Id: req.params.id })
+            .then((character) => res.json(character))
             .catch((err) => res.json(err));
     },
 };
