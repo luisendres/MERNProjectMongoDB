@@ -73,10 +73,10 @@ function App() {
         </Route>
 
         <Route exact path="/player/character/update/:id">
-          <UpdateCharacter />
+          <UpdateCharacter isLoggedIn={isLoggedIn}/>
         </Route>
         <Route exact path="/player/character/details/:id">
-          <CharacterDetails />
+          <CharacterDetails isLoggedIn={isLoggedIn}/>
         </Route>
 
         <Route component={NotFound} />

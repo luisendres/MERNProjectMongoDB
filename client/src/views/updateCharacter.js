@@ -7,6 +7,11 @@ import Human from "../components/human";
 
 
 const UpdateCharacter = (props) => {
+    const history = useHistory();
+    if(!props.isLoggedIn) {
+        history.push("/")
+    }
+
     const { id } = useParams();
     const [Name, setName] = useState("");
     const [PlayerName, setPlayerName] = useState("");
@@ -42,7 +47,6 @@ const UpdateCharacter = (props) => {
     }
     const [Sigil, setSigil] = useState("");
     const [errors, setErrors] = useState(null);
-    const history = useHistory();
 
     useEffect(() => {
         axios
