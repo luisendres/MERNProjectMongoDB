@@ -67,7 +67,6 @@ const NewCharacter = (props) => {
     const [Sigil, setSigil] = useState("");
     const [Bank, setBank] = useState();
     const [errors, setErrors] = useState(null);
-    // const history = useHistory();
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
@@ -305,18 +304,19 @@ const NewCharacter = (props) => {
                                         name="VirtueInt" />
                                 </div>
                             </div>
+                            <div className="mb-3 col-4">
+                                <div className="d-flex flex-column">
+                                    <label className="form-label">Sigil</label>
+                                    <input
+                                        onChange={(e=>setSigil(e.target.value))} 
+                                        type="file" 
+                                        name="Sigil" />
+                                </div>
+                            </div>
                         </div> : ""
                     }
                     <input type="submit" className="bg-dark border-light border-2 text-light" />
-                    <h3 className="text-light">Subfaction1: {Subfaction1}</h3>
-                    <h3 className="text-light">Subfaction2: {Subfaction2}</h3>
-                    <h3 className="text-light">Subfaction3: {Subfaction3}</h3>
-                    <h2>Gen/Rank: {GenRank}</h2>
-                    <h3 className="text-light">Virtue Type: {VirtueType}</h3>
-                    <h3 className="text-light">Shadow/DeedName/Sire: {ShadowDeedNameSire}</h3>
                 </form>
-            </div>
-            <div className="row">
             </div>
         </div>
     )

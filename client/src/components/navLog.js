@@ -41,7 +41,7 @@ const NavLog = (props) => {
                                 </li>
                                 <li className="nav-item">
                                     <Link to={`/player/character/new/${users._id}`}>
-                                        <a className="nav-link">My Characters</a>
+                                        <a className="nav-link">New Character</a>
                                     </Link>
                                 </li>
                                 <li className="nav-item">

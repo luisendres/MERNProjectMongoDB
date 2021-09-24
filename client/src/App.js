@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="App">
       {isLoggedIn ? <NavLog/> : <NavOut />}
-      {isLoggedIn && <button onClick={logout}>Logout</button>}
+      {isLoggedIn && <button className="btn border-dark border-2 bg-light" onClick={logout}>Logout</button>}
       <Switch >
         <Route exact path="/">
           <Login setLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
